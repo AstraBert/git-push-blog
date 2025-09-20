@@ -1,0 +1,50 @@
+---
+default_language_version:
+  python: python3
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-yaml
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+
+  - repo: https://github.com/adamchainz/blacken-docs
+    rev: 1.16.0
+    hooks:
+      - id: blacken-docs
+        name: black-docs-text
+        alias: black
+        types_or: [rst, markdown, tex]
+        additional_dependencies: [black==23.10.1]
+        # Using PEP 8's line length in docs prevents excess left/right scrolling
+        args: [--line-length=79]
+
+  - repo: local
+    hooks:
+      - id: go-build
+        name: go build
+        entry: go build ./...
+        language: system
+        files: \.go$
+        pass_filenames: false
+
+      - id: go-test-short
+        name: go test (short)
+        entry: go test -short ./...
+        language: system
+        files: \.go$
+        pass_filenames: false
+
+      - id: templ-generate
+        name: templ generate
+        entry: templ generate
+        language: system
+        files: \.go$
+        pass_filenames: false

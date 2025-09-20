@@ -1,0 +1,36 @@
+{
+  "name": "@cle-does-things/git-push-blog",
+  "version": "0.1.0",
+  "description": "Blog platform to share your experience about coding with the software engineering community.",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "golang-npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AstraBert/git-push-blog.git"
+  },
+  "keywords": [
+    "blog",
+    "coding",
+    "open-source",
+    "web-dev",
+    "go",
+    "templ"
+  ],
+  "author": "Clelia Astra Bertelli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AstraBert/git-push-blog/issues"
+  },
+  "homepage": "https://github.com/AstraBert/git-push-blog#readme",
+  "dependencies": {
+    "golang-npm": "^0.0.6"
+  },
+  "goBinary": {
+    "name": "git-push-blog",
+    "path": "./bin",
+    "url": "https://github.com/AstraBert/git-push-blog/releases/download/v{{version}}/git-push-blog_{{version}}_{{platform}}_{{arch}}.tar.gz"
+  }
+}

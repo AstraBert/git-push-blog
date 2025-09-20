@@ -1,0 +1,40 @@
+package templates
+
+import "github.com/AstraBert/git-push-blog/models"
+
+templ Post(blog *models.BlogPost) {
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Push Blog Posts - {blog.Title}</title>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --font-poppins: Poppins, sans-serif;
+        --font-opensans: "Open Sans", sans-serif;
+        --font-comic: "Comic Sans MS", cursive;
+      }
+    </style>
+    </head>
+    <body class="bg-gradient-to-br from-white via-pink-200 to-pink-400 min-h-screen">
+    <header class="items-center text-center space-y-8">
+            <nav class="grid grid-cols-2 rounded-lg border border-gray-200 shadow-xl py-8 mt-8 mb-8">
+                <div>
+                    <a href="/" class="font-comic text-3xl text-pink-600">git-push blog</a>
+                </div>
+                <div>
+                    <a href="/blog" class="font-comic text-3xl text-pink-600">Explore Blog Posts</a>
+                </div>
+            </nav>
+            <br>
+        <h1 class="font-comic text-3xl text-gray-700 mb-4">{blog.Title}</h1>
+        <h4 class="font-semibold text-lg text-gray-600 mb-2 font-poppins">by {blog.Author}</h4>
+        <h4 class="font-semibold text-sm text-gray-500 mb-2 font-poppins">{blog.PublishingDate}</h4>
+    </header>
+    <br>
+    <div class="h-full w-full bg-white/15 rounded-2xl backdrop-filter backdrop-blur-xl border border-white/20 shadow-xl flex flex-col p-5">
+        @templ.Raw(blog.Content)
+    </div>
+    </body>
+}
