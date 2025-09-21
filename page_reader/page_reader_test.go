@@ -4,7 +4,6 @@ import (
 	"os"
 	"path"
 	"slices"
-	"strconv"
 	"strings"
 	"testing"
 
@@ -100,9 +99,9 @@ func TestMarkdownToPost(t *testing.T) {
 			t.Errorf("Expecting no error while processing %s, got %s", fl, err.Error())
 		}
 
-		postId, _ := strconv.Atoi(strings.ReplaceAll(path.Base(fl), ".md", ""))
+		postId := strings.ReplaceAll(path.Base(fl), ".md", "")
 		if blog.Id != postId {
-			t.Errorf("Expected blog.Id to be %d, got %d", postId, blog.Id)
+			t.Errorf("Expected blog.Id to be %s, got %s", postId, blog.Id)
 		}
 		if blog.Author != "Clelia Astra Bertelli" {
 			t.Errorf("Expected blog.Author to be 'Clelia Astra Bertelli', got '%s'", blog.Author)
