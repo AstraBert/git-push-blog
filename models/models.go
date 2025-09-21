@@ -6,11 +6,11 @@ import (
 )
 
 type BlogPost struct {
-	Id             int
-	Title          string
-	PublishingDate string
-	Author         string
-	Content        string
+	Id             int    `json:"id"`
+	Title          string `json:"title"`
+	PublishingDate string `json:"publishing_date"`
+	Author         string `json:"author"`
+	Content        string `json:"content"`
 }
 
 func NewBlogPost(id int, title, pubDate, author, content string) *BlogPost {

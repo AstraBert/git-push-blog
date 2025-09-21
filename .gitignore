@@ -1,2 +1,5 @@
 # env variables
 .env
+
+# store
+posts.bleve

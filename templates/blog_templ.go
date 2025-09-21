@@ -32,7 +32,7 @@ func BlogPage(blogPosts []*models.BlogPost) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Git Push Blog Posts</title><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js\"></script><script src=\"https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4\"></script><style type=\"text/tailwindcss\">\n      @theme {\n        --font-poppins: Poppins, sans-serif;\n        --font-opensans: \"Open Sans\", sans-serif;\n        --font-comic: \"Comic Sans MS\", cursive;\n      }\n    </style></head><body class=\"bg-gradient-to-br from-white via-pink-200 to-pink-400 min-h-screen\"><header class=\"items-center text-center space-y-8\"><nav class=\"grid grid-cols-2 rounded-lg border border-gray-200 shadow-xl py-8 mt-8 mb-8\"><div><a href=\"/\" class=\"font-comic text-3xl text-pink-600\">git-push blog</a></div><div><a href=\"/blog\" class=\"font-comic text-3xl text-pink-600\">Explore the blog</a></div></nav><br><h1 class=\"font-comic text-3xl text-gray-700\">Blog Posts</h1><br><h2 class=\"font-poppins text-2xl\">Navigate through all the available posts, and beyond!</h2></header><br><div class=\"h-full w-full bg-white/15 rounded-2xl backdrop-filter backdrop-blur-xl border border-white/20 shadow-xl flex flex-col p-5\"><ul>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Git Push Blog Posts</title><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js\"></script><script src=\"https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4\"></script><style type=\"text/tailwindcss\">\n      @theme {\n        --font-poppins: Poppins, sans-serif;\n        --font-opensans: \"Open Sans\", sans-serif;\n        --font-comic: \"Comic Sans MS\", cursive;\n      }\n    </style></head><body class=\"bg-gradient-to-br from-white via-pink-200 to-pink-400 min-h-screen\"><header class=\"items-center text-center space-y-8\"><nav class=\"grid grid-cols-3 rounded-lg border border-gray-200 shadow-xl py-8 mt-8 mb-8\"><div><a href=\"/\" class=\"font-comic text-3xl text-pink-600\">git-push blog</a></div><div><a href=\"/blog\" class=\"font-comic text-3xl text-pink-600\">Explore the blog</a></div><div><form><input name=\"search\" placeholder=\"Search Something\" class=\"text-sans rounded-lg border border-gray-100 shadow-lg text-lg\"> <button class=\"bg-pink-600 text-white font-semibold font-sans w-[100px] py-3 px-6 rounded-lg shadow-xl\">🔍</button></form></div></nav><br><h1 class=\"font-comic text-3xl text-gray-700\">Blog Posts</h1><br><h2 class=\"font-poppins text-2xl\">Navigate through all the available posts, and beyond!</h2></header><br><div class=\"h-full w-full bg-white/15 rounded-2xl backdrop-filter backdrop-blur-xl border border-white/20 shadow-xl flex flex-col p-5\"><ul id=\"blogList\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -44,7 +44,7 @@ func BlogPage(blogPosts []*models.BlogPost) templ.Component {
 			var templ_7745c5c3_Var2 templ.SafeURL
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinURLErrs(fmt.Sprintf("/blog/%d", post.Id))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/blog.templ`, Line: 40, Col: 105}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/blog.templ`, Line: 48, Col: 105}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
@@ -57,7 +57,7 @@ func BlogPage(blogPosts []*models.BlogPost) templ.Component {
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(post.Title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/blog.templ`, Line: 40, Col: 156}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/blog.templ`, Line: 48, Col: 156}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
@@ -70,7 +70,7 @@ func BlogPage(blogPosts []*models.BlogPost) templ.Component {
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(post.Author)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/blog.templ`, Line: 40, Col: 233}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/blog.templ`, Line: 48, Col: 233}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
@@ -83,7 +83,7 @@ func BlogPage(blogPosts []*models.BlogPost) templ.Component {
 			var templ_7745c5c3_Var5 string
 			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(post.PublishingDate)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/blog.templ`, Line: 40, Col: 265}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `templates/blog.templ`, Line: 48, Col: 265}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
