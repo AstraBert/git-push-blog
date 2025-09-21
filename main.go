@@ -6,17 +6,13 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/AstraBert/git-push-blog/commons"
 	"github.com/AstraBert/git-push-blog/models"
 	pagereader "github.com/AstraBert/git-push-blog/page_reader"
 	"github.com/AstraBert/git-push-blog/templates"
 	textsearch "github.com/AstraBert/git-push-blog/text_search"
 	"github.com/a-h/templ"
 )
-
-func pathExists(path string) bool {
-	_, err := os.Stat(path)
-	return !os.IsNotExist(err)
-}
 
 func main() {
 	mdFiles, errFls := pagereader.GetMarkdownFiles("./contents")
@@ -38,7 +34,7 @@ func main() {
 		return
 	}
 	blogs = models.SortBlogPosts(blogs)
-	if pathExists("posts.bleve") {
+	if commons.PathExists("posts.bleve") {
 		os.RemoveAll("posts.bleve")
 	}
 	index, err := textsearch.CreateIndex(blogs, "posts.bleve")
