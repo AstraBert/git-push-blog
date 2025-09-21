@@ -3,13 +3,20 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/AstraBert/git-push-blog/models"
 	pagereader "github.com/AstraBert/git-push-blog/page_reader"
 	"github.com/AstraBert/git-push-blog/templates"
+	textsearch "github.com/AstraBert/git-push-blog/text_search"
 	"github.com/a-h/templ"
 )
+
+func pathExists(path string) bool {
+	_, err := os.Stat(path)
+	return !os.IsNotExist(err)
+}
 
 func main() {
 	mdFiles, errFls := pagereader.GetMarkdownFiles("./contents")
@@ -31,6 +38,15 @@ func main() {
 		return
 	}
 	blogs = models.SortBlogPosts(blogs)
+	if pathExists("posts.bleve") {
+		os.RemoveAll("posts.bleve")
+	}
+	index, err := textsearch.CreateIndex(blogs, "posts.bleve")
+	if err != nil {
+		fmt.Println("An error occurred while creating the index: " + err.Error())
+		return
+	}
+
 	homeComponent := templates.Home()
 	blogComponent := templates.BlogPage(blogs)
 
@@ -52,13 +68,57 @@ func main() {
 		var blogPost *models.BlogPost
 
 		for _, post := range blogs {
-			if post.Id == postId {
+			if post.Id == id {
 				blogPost = post
 				break
 			}
 		}
 
 		templates.Post(blogPost).Render(r.Context(), w)
+	})
+
+	http.HandleFunc("POST /search", func(w http.ResponseWriter, r *http.Request) {
+		err := r.ParseForm()
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		searchText := r.FormValue("search")
+		if searchText == "" {
+			http.Error(w, "Search text is required", http.StatusBadRequest)
+			return
+		}
+
+		results, err := textsearch.SearchText(searchText, index)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		searchResults, errS := textsearch.ParseSearchResults(results)
+
+		if errS != nil {
+			http.Error(w, "No matches where found for the search", http.StatusInternalServerError)
+			return
+		}
+
+		// Return HTML instead of JSON for HTMX
+		w.Header().Set("Content-Type", "text/html")
+
+		// Generate HTML for search results
+		html := ""
+		for _, post := range searchResults {
+			html += fmt.Sprintf(`<li class="text-gray-600 font-sans text-xl">• <a href="/blog/%s"><span class="text-pink-500 underline">%s</span></a> posted by <span class="font-semibold text-pink-400">%s</span> on %s</li>`,
+				post.Id, post.Title, post.Author, post.PublishingDate)
+		}
+
+		if html == "" {
+			html = `<li class="text-gray-600 font-sans text-xl">No results found</li>`
+		}
+
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte(html))
 	})
 
 	fmt.Println("Server started on :8000")

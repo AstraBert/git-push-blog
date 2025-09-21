@@ -28,9 +28,9 @@ templ BlogPage(blogPosts []*models.BlogPost) {
                     <a href="/blog" class="font-comic text-3xl text-pink-600">Explore the blog</a>
                 </div>
                 <div>
-                    <form>
+                    <form hx-post="/search" hx-target="#blogList" hx-trigger="submit">
                         <input name="search" placeholder="Search Something" class="text-sans rounded-lg border border-gray-100 shadow-lg text-lg">
-                        <button class="bg-pink-600 text-white font-semibold font-sans w-[100px] py-3 px-6 rounded-lg shadow-xl">
+                        <button class="bg-pink-600 text-white font-semibold font-sans w-[100px] py-3 px-6 rounded-lg shadow-xl" type="submit">
                             🔍
                         </button>
                     </form>
@@ -45,7 +45,7 @@ templ BlogPage(blogPosts []*models.BlogPost) {
         <div class="h-full w-full bg-white/15 rounded-2xl backdrop-filter backdrop-blur-xl border border-white/20 shadow-xl flex flex-col p-5">
         <ul id="blogList">
             for _, post := range blogPosts {
-                <li class="text-gray-600 font-sans text-xl">• <a href={fmt.Sprintf("/blog/%d", post.Id)}><span class="text-pink-500 underline">{post.Title}</span></a> posted by <span class="font-semibold text-pink-400">{post.Author}</span> on {post.PublishingDate}</li>
+                <li class="text-gray-600 font-sans text-xl">• <a href={fmt.Sprintf("/blog/%s", post.Id)}><span class="text-pink-500 underline">{post.Title}</span></a> posted by <span class="font-semibold text-pink-400">{post.Author}</span> on {post.PublishingDate}</li>
             }
         </ul>
         </div>

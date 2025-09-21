@@ -31,10 +31,7 @@ func AddStyleToHTML(content string) string {
 }
 
 func MarkdownToPost(filePath string) (*models.BlogPost, error) {
-	postId, errConv := strconv.Atoi(strings.ReplaceAll(path.Base(filePath), ".md", ""))
-	if errConv != nil {
-		return nil, errConv
-	}
+	postId := strings.ReplaceAll(path.Base(filePath), ".md", "")
 	var postTitle string
 	var postAuthor string
 	var postDate string
