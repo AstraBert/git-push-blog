@@ -1,11 +1,13 @@
 module github.com/AstraBert/git-push-blog
 
-go 1.24.5
+go 1.25.1
 
 require (
 	github.com/a-h/templ v0.3.943
 	github.com/blevesearch/bleve v1.0.14
 	github.com/gomarkdown/markdown v0.0.0-20250810172220-2e2c11897d1a
+	github.com/openai/openai-go/v2 v2.6.0
+	github.com/takara-ai/serverlessVector v1.0.0
 )
 
 require (
@@ -26,6 +28,10 @@ require (
 	github.com/mschoch/smat v0.2.0 // indirect
 	github.com/philhofer/fwd v1.0.0 // indirect
 	github.com/steveyen/gtreap v0.1.0 // indirect
+	github.com/tidwall/gjson v1.14.4 // indirect
+	github.com/tidwall/match v1.1.1 // indirect
+	github.com/tidwall/pretty v1.2.1 // indirect
+	github.com/tidwall/sjson v1.2.5 // indirect
 	github.com/tinylib/msgp v1.1.0 // indirect
 	github.com/willf/bitset v1.1.10 // indirect
 	go.etcd.io/bbolt v1.3.5 // indirect
