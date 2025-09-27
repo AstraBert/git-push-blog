@@ -20,7 +20,7 @@ var HTMLStyleMap = map[string]string{
 	"<h4>":   `<h4 class="font-semibold text-lg text-gray-600 mb-2 font-poppins">`,
 	"<p>":    `<p class="text-gray-700/90 leading-relaxed mb-4 font-sans">`,
 	"<code>": `<code class="bg-pink-100/70 text-pink-800 px-2 py-1 rounded font-mono text-sm border border-pink-200">`,
-	"<pre>":  `<pre class="bg-gray-900/90 text-green-400 p-4 rounded-lg overflow-x-auto font-mono text-sm border border-gray-700 shadow-lg mb-4 backdrop-blur-sm">`,
+	"<pre>":  `<pre class="bg-gray-900/90 text-green-400 p-4 rounded-lg font-mono text-sm border border-gray-700 shadow-lg mb-4 backdrop-blur-sm">`,
 }
 
 func AddStyleToHTML(content string) string {

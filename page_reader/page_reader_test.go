@@ -43,7 +43,7 @@ func TestAddStyleToHTML(t *testing.T) {
 		},
 		{
 			starting: "<pre>func main() {\\n    fmt.Println(\"Hello\")\\n}</pre>",
-			expected: `<pre class="bg-gray-900/90 text-green-400 p-4 rounded-lg overflow-x-auto font-mono text-sm border border-gray-700 shadow-lg mb-4 backdrop-blur-sm">func main() {\n    fmt.Println("Hello")\n}</pre>`,
+			expected: `<pre class="bg-gray-900/90 text-green-400 p-4 rounded-lg font-mono text-sm border border-gray-700 shadow-lg mb-4 backdrop-blur-sm">func main() {\n    fmt.Println("Hello")\n}</pre>`,
 		},
 		{
 			starting: "<h1>Title</h1><p>Content with <code>inline code</code> here.</p>",
@@ -51,7 +51,7 @@ func TestAddStyleToHTML(t *testing.T) {
 		},
 		{
 			starting: "<h2>Code Example</h2><pre>package main\\n\\nimport \"fmt\"</pre><p>This shows Go syntax.</p>",
-			expected: `<h2 class="font-poppins text-2xl text-gray-700 mb-3">Code Example</h2><pre class="bg-gray-900/90 text-green-400 p-4 rounded-lg overflow-x-auto font-mono text-sm border border-gray-700 shadow-lg mb-4 backdrop-blur-sm">package main\n\nimport "fmt"</pre><p class="text-gray-700/90 leading-relaxed mb-4 font-sans">This shows Go syntax.</p>`,
+			expected: `<h2 class="font-poppins text-2xl text-gray-700 mb-3">Code Example</h2><pre class="bg-gray-900/90 text-green-400 p-4 rounded-lg font-mono text-sm border border-gray-700 shadow-lg mb-4 backdrop-blur-sm">package main\n\nimport "fmt"</pre><p class="text-gray-700/90 leading-relaxed mb-4 font-sans">This shows Go syntax.</p>`,
 		},
 		{
 			starting: "<h1>Main</h1><h2>Sub</h2><h3>Section</h3><h4>Detail</h4>",
